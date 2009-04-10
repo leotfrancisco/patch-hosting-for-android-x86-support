@@ -38,7 +38,7 @@ It depends on your network, this step could take very long time (on my ADSL conn
  # $VBoxManage convertfromraw -static -format vdi installed.img installed.vdi
  now you can boot installed.vdi from VirtualBox
 
-=Install and config VirtualBox210=
+= Install and config VirtualBox210 =
  # download VirtualBox package from http://download.virtualbox.org/virtualbox/2.1.0/
  # install the package on your machine
  # run the VirtualBox after you finished install
@@ -49,7 +49,7 @@ It depends on your network, this step could take very long time (on my ADSL conn
   - RAM=256MB
   - Hard Disks=  Slot Checked Boot Harddisk with IDE Primary Master
 
-=Booting Android kernel in VirtualBox=
+= Booting Android kernel in VirtualBox =
  # Start VirtualBox and push F12 key fast as soon as you see "Press F12 to select boot device" message  in virtualbox window.
  # Select correct boot device (should be IDE Primary Master)
  # Boot to "std_boot"                
