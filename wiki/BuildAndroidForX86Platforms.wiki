@@ -26,7 +26,7 @@ It depends on your network, this step could take very long time (on my ADSL conn
  # $repo sync
  # patch all the patches in the downloads section of this site.
 
-= How to build an image for VirtualBox2.1.0 =
+= How to build an image for VirtualBox210 =
  
  # $cd sandbox
  # $TARGET_ARCH=x86 TARGET_PRODUCT=eee_701 DISABLE_DEXPREOPT=true make -j4 droid
@@ -38,7 +38,7 @@ It depends on your network, this step could take very long time (on my ADSL conn
  # $VBoxManage convertfromraw -static -format vdi installed.img installed.vdi
  now you can boot installed.vdi from VirtualBox
 
-=Install and config VirtualBox2.1.0=
+=Install and config VirtualBox210=
  # download VirtualBox package from http://download.virtualbox.org/virtualbox/2.1.0/
  # install the package on your machine
  # run the VirtualBox after you finished install
