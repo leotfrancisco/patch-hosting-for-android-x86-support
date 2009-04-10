@@ -1,0 +1,51 @@
+#labels HowtobuildAndroidforX86platforms
+#The instructions to build Android for X86.
+
+= Introduction =
+
+This page has (hopefully) the latest information about how to build Android for x86 platforms like EeePC. I try to provide instructions to build images to run on the real hardware as well as virtual machines. Due to the resource limitation (I'm doing this in my private time), currently I'm going to only use EeePC 1000HE and VirtualBox as reference running environments. I only have Ubuntu 8.10 for now, I will use it as my building platform.  
+
+_As you can see that I'm not a English speaker, so please bare with my broken English. For questions, please send e-mail to android porting group for quick help._
+
+= Getting Android source code for x86 =
+ Android currently supports x86 platforms though EeePC 701 porting done by Dima Zavin <dima@android.com>. In order to build Android image for EeePC 701, you need to :
+ # follow the page http://source.android.com/download to configure your build environment. But do not check out the source code. (Do not run repo init)
+ # $ mkdir <sandbox or whatever name you like for your sandbox>
+ # $ cd sandbox
+ # $ Run repo init -u git://android.git.kernel.org/platform/manifest.git -b cupcake and answer the questions
+ # If the last step runs successfully, you should see something like repo initialized in sandbox"
+ # $ repo sync
+It depends on your network, this step could take very long time (on my ADSL connection, it can take up to 3 hours).
+ # $ cd .repo
+ # create  local_manifest.xml file with following contents
+   <?xml version="1.0" encoding="UTF-8"?>
+   <manifest>
+       <project name="platform/vendor/asus/eee_701" path="vendor/asus/eee_701"/>
+   </manifest> 
+ # $cd ..
+ # $repo sync
+ # patch all the patches in the downloads section of this site.
+
+= How to build an image for VirtualBox 2.1.0 =
+ 
+ # $cd sandbox
+ # $TARGET_ARCH=x86 TARGET_PRODUCT=eee_701 DISABLE_DEXPREOPT=true make -j4 droid
+ # $cp vendor/asus/eee_701/make_boot_img.sh out/target/product/eee_701/.
+ # $cp vendor/asus/eee_701/disk_img.conf out/target/product/eee_701/.
+ # $cd out/target/product/eee_701/
+ # $chmod a+x make_boot_img.sh
+ # $./make_boot_img.sh disk_img.conf
+ # $VBoxManage convertfromraw -static -format vdi installed.img installed.vdi
+ now you can boot installed.vdi from VirtualBox
+
+= How to rebuild kernel =
+ # $cd sandbox
+ # $cp vender/asus/eee_701/kernel.config kernel/.config
+ # $cd kernel
+ # $make menuconfig  select the Virtualization option and de-select it then exit, choose "Yes" when you are asked whether to save a new configuration. (Select/de-select the Virtualization option is just used to trigger some menuconfig operations.)
+ # $make bzImage
+ # you can find your kernel image from arch/x86/boot directory
+ # $cp bzImage vendor/asus/eee_701/ and rebuild your Android image.
+
+= How to build and install image for EeePC701 =
+To be added
