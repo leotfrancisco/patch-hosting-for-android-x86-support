@@ -27,7 +27,7 @@ It depends on your network, this step could take very long time (on my ADSL conn
  # patch all the patches in the downloads section of this site.
 
 = How to build an image for VirtualBox210 =
- 
+ # You need to build the kernel image with before you do following steps. Please see the "How to rebuild kernel" section for detail
  # $cd sandbox
  # $TARGET_ARCH=x86 TARGET_PRODUCT=eee_701 DISABLE_DEXPREOPT=true make -j4 droid
  # $cp vendor/asus/eee_701/make_boot_img.sh out/target/product/eee_701/.
