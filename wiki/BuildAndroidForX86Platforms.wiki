@@ -64,4 +64,68 @@ It depends on your network, this step could take very long time (on my ADSL conn
  # $cp bzImage vendor/asus/eee_701/ and rebuild your Android image.
 
 = How to build and install image for EeePC701 =
-To be added
+Building an installer image for a real EeePC is not more complicate than building an image for VB. The biggest issue is the framebuffer. The original porting done by Dima uses a modesetting inteldrmfb driver. Dima gave a link to download the source code for the driver. But the link does not work anymore. So people can not build their own kernel anymore.
+The modesetting inteldrmfb is released with 2.6.29 kernel, but at the time this note is written, the Android does not support 2.6.29 yet. Before Android moves to 2.6.29, we  have two choices (Both tested by Luca and me):
+ # use VESA with very low resolution (640x480)
+ # use intelfb with little bit higher resolution (800x600)
+
+I choose to use intelfb. In order to use either VESA or intelfb, we need to put vga=788 (800x600) or vga=785 (640x480) in the kernel command line. To do it, you need to do following changes:
+{{{
+project bootable/diskinstaller/
+diff --git a/config.mk b/config.mk
+index 2cb034d..3ed1759 100644
+--- a/config.mk
++++ b/config.mk
+@@ -119,6 +119,7 @@ internal_installerimage_args := \
+ internal_installerimage_files := \
+        $(filter-out --%,$(internal_installerimage_args))
+ 
++BOARD_KERNEL_CMDLINE := $(patsubst vga=788, ,$(BOARD_KERNEL_CMDLINE))
+ BOARD_KERNEL_CMDLINE := $(strip $(BOARD_KERNEL_CMDLINE))
+ ifdef BOARD_KERNEL_CMDLINE
+   internal_installerimage_args += --cmdline "$(BOARD_KERNEL_CMDLINE)"
+
+In vendor/asus/eee_701 directory do following changes
+
+diff --git a/BoardConfig.mk b/BoardConfig.mk
+index 54b0d4f..598a528 100644
+--- a/BoardConfig.mk
++++ b/BoardConfig.mk
+@@ -25,7 +25,7 @@ TARGET_USE_DISKINSTALLER := true
+ 
+ TARGET_DISK_LAYOUT_CONFIG := vendor/asus/eee_701/disk_layout.conf
+ 
+-BOARD_KERNEL_CMDLINE := console=tty0 console=ttyS1,115200n8 console=tty0 androidboot.hardware=eee_701
++BOARD_KERNEL_CMDLINE := console=tty0 console=ttyS1,115200n8 console=tty0 androidboot.hardware=eee_701 vga=788
+ 
+diff --git a/init.rc b/init.rc
+index 00aa93c..3eeb758 100644
+--- a/init.rc
++++ b/init.rc
+@@ -91,8 +91,10 @@ loglevel 3
+     insmod /lib/modules/cfbfillrect.ko
+     insmod /lib/modules/cfbcopyarea.ko
+     insmod /lib/modules/drm.ko
+-    insmod /lib/modules/i915.ko modeset=1
++    insmod /lib/modules/i915.ko 
+     insmod /lib/modules/fbcon.ko
++    insmod /lib/modules/i2c-algo-bit.ko
++    insmod /lib/modules/intelfb.ko
+}}}
+in AndroidBoard.mk find kernel_modules := \ and add i2c-algo-bit.ko and intelfb.ko 
+
+
+Now you can start to build installer.img:
+
+ # get the source code as mentioned in the "Getting Android source code for x86" section
+ # compile kernel by disable VESA framebuffer and enable follow features as module 
+   atl2.ko     cfbcopyarea.ko  cfbimgblt.ko  font.ko		 
+   i915.ko     bitblit.ko  cfbfillrect.ko  drm.ko	  fbcon.ko     i2c-algo-bit.ko	 
+   intelfb.ko  softcursor.ko
+ # copy these modules to vendor/asus/eee_701/modules directory 
+ # build installer_img with following command
+   TARGET_ARCH=x86 TARGET_PRODUCT=eee_701 DISABLE_DEXPREOPT=true make -j4 installer_img
+ # Plug usb driver to your pc
+ # cd out/target/product/eee_701
+ # dd if=./installer.img of=<your usb device node>
+ # use the usb driver to boot your eeePC and install Android on the target
