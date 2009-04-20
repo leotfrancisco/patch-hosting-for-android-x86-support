@@ -76,7 +76,7 @@ _(Luca)_ I am running on EeePc 701 with following cmdline parameters appended to
 video=intefb:640x480-16,accel vga=785
 }}}
 
-Intel 915 until now need userspace stuff to improve performances and resolution.
+Until now, _Intel 915_ need userspace stuff to improve performances and resolution.
 
 To do it, you need to do following changes:
 {{{
