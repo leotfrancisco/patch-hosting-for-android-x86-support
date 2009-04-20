@@ -69,7 +69,13 @@ The modesetting inteldrmfb is released with 2.6.29 kernel, but at the time this 
  # use VESA with very low resolution (640x480)
  # use intelfb with little bit higher resolution (800x600)
 
-I choose to use intelfb. In order to use either VESA or intelfb, we need to put vga=788 (800x600) or vga=785 (640x480) in the kernel command line. To do it, you need to do following changes:
+I choose to use intelfb. In order to use either VESA or intelfb, we need to put vga=788 (800x600) or vga=785 (640x480) in the kernel command line. 
+
+_(Luca)_ I am running on EeePc 701 with:
+{{{video=intefb:640x480-16,accel vga=785}}}
+Intel 915 until now need userspace stuff to improve performances and resolution.
+
+To do it, you need to do following changes:
 {{{
 project bootable/diskinstaller/
 diff --git a/config.mk b/config.mk
@@ -84,9 +90,6 @@ index 2cb034d..3ed1759 100644
  BOARD_KERNEL_CMDLINE := $(strip $(BOARD_KERNEL_CMDLINE))
  ifdef BOARD_KERNEL_CMDLINE
    internal_installerimage_args += --cmdline "$(BOARD_KERNEL_CMDLINE)"
-
-_(Luca)_ I am running on EeePc 701 with 
-{{{video=intefb:640x480-16,accel vga=785}}}
 
 In vendor/asus/eee_701 directory do following changes
 
