@@ -73,7 +73,12 @@ I choose to use intelfb. In order to use either VESA or intelfb, we need to put 
 
 _(Luca)_ I am running on EeePc 701 with following cmdline parameters appended to default ones:
 {{{
-video=intefb:640x480-16,accel vga=785
+video=intelfb:640x480-16,accel vga=785
+}}}
+
+_(Yi)_ I'am running on EeePC 1000HD with following cmdline parameters appended to default ones:
+{{{
+video=intelfb:800x600-32,vga=788
 }}}
 
 Until now, _Intel 915_ need userspace stuff to improve performances and resolution.
