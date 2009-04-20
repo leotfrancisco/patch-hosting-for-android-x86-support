@@ -71,8 +71,11 @@ The modesetting inteldrmfb is released with 2.6.29 kernel, but at the time this 
 
 I choose to use intelfb. In order to use either VESA or intelfb, we need to put vga=788 (800x600) or vga=785 (640x480) in the kernel command line. 
 
-_(Luca)_ I am running on EeePc 701 with:
-{{{video=intefb:640x480-16,accel vga=785}}}
+_(Luca)_ I am running on EeePc 701 with following cmdline parameters appended to default ones:
+{{{
+video=intefb:640x480-16,accel vga=785
+}}}
+
 Intel 915 until now need userspace stuff to improve performances and resolution.
 
 To do it, you need to do following changes:
