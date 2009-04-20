@@ -85,6 +85,9 @@ index 2cb034d..3ed1759 100644
  ifdef BOARD_KERNEL_CMDLINE
    internal_installerimage_args += --cmdline "$(BOARD_KERNEL_CMDLINE)"
 
+_(Luca)_ I am running on EeePc 701 with 
+{{{video=intefb:640x480-16,accel vga=785}}}
+
 In vendor/asus/eee_701 directory do following changes
 
 diff --git a/BoardConfig.mk b/BoardConfig.mk
