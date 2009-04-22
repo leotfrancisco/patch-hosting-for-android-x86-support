@@ -25,6 +25,25 @@ It depends on your network, this step could take very long time (on my ADSL conn
  # $cd ..
  # $repo sync
  # patch all the patches in the downloads section of this site.
+Here is a smart tip for apply patches from kewarken@gmail.com
+
+{{{
+   On Wed, 2009-04-22 at 07:04 -0700, kewarken wrote:
+> If you want to apply them all at once, since the patches follow a
+> pattern, you can do something like this from your cupcake source dir
+> with the patches in the directory above it:
+> 
+> for patch in `pwd`/../*patch ; do
+>     project=`awk '/^project /{print $2}' $patch`
+>     (cd $project && patch -p1 < $patch)
+> done
+> 
+> cheers,
+> 
+> Kris
+> 
+
+}}}
 
 = How to build an image for VirtualBox210 =
  # You need to build the kernel image before you do following steps. Please see the "How to rebuild kernel" section for detail
