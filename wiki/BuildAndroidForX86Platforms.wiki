@@ -50,7 +50,7 @@ Here is a smart tip for apply patches from kewarken@gmail.com
  # $cd sandbox
  # $TARGET_ARCH=x86 TARGET_PRODUCT=eee_701 DISABLE_DEXPREOPT=true make -j4 droid
  # $vendor/asus/eee_701/make_boot_img.sh [disk configuration file]
-   by default vendor/asus/eee_701/disk_img.conf will be used as default disk configuration file. You can create your own.
+ by default vendor/asus/eee_701/disk_img.conf will be used as default disk configuration file. You can create your own.
  # cd out/target/product/eee_701
  # $VBoxManage convertfromraw -static -format vdi installed.img installed.vdi
  now you can boot installed.vdi from VirtualBox
