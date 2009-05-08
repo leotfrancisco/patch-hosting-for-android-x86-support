@@ -8,7 +8,7 @@ The Eee PC models have unusual resolutions like 800x480 or 1024x600, which are n
  * Use make-live script to create a live android system in a usb disk
  * Install grub2 with 915resolution patched to the usb disk. Get prebuilt grub2 deb in EeeSoft repository:
    http://218.211.38.204/eeesoft/pool/main/g/grub2/
- * Compile a vesa driver enabled kernel, copy the image into usb disk
+ * Compile a vesa driver enabled kernel (see [BuildAndroidForX86Platforms#How_to_rebuild_kernel here] for details), copy the image into usb disk
 {{{
 # mount /dev/sdb2 /media/root
 # cp arch/x86/boot/bzImage /media/root/boot/kernel-vesa
