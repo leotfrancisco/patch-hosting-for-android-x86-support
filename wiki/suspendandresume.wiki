@@ -2,5 +2,15 @@
 =How to make suspend/resume to work=
   * change kernel/power/wake_lock.c function to remove the entry_event_num check at the end of suspend function
   * rebuild kernel (see [BuildAndroidForX86Platforms#How_to_rebuild_kernel here] for details)
-  * add acpi_sleep=s3_bios,s3_mode in kernel command line (see [  	 RunAndroidWithEeePCResolutionUsingGrub2 here] for detail)
+  * add acpi_sleep=s3_bios,s3_mode in kernel command line
+    eg, in grub.cfg (assume you are using grub2) :
+   {{{
+    menuentry "Android Vesa 9xx" {
+            insmod 915resolution
+            915resolution 45 1024 600
+            linux /boot/kernel-vesa root=/dev/sdc2 rootdelay=6 rw init=/init androidboot.hardware=eee_701 vga=791 acpi_sleep=s3_biod,s3_mode
+    }
+   }}}
+  * boot android and set screen time to whatever value you want.
+  * wait machine to suspend.
   * use fn + f6 to wake up the machine. 
