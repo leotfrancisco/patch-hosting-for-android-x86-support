@@ -11,6 +11,6 @@
             linux /boot/kernel-vesa root=/dev/sdc2 rootdelay=6 rw init=/init androidboot.hardware=eee_701 vga=791 acpi_sleep=s3_biod,s3_mode
     }
    }}}
-  * boot android and set screen time to whatever value you want.
+  * boot android and set screen timeout to whatever value you want.
   * wait machine to suspend.
   * use fn + f6 to wake up the machine. 
