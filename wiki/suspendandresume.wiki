@@ -1,0 +1,5 @@
+=How to make suspend/resume to work=
+  * change kernel/power/wake_lock.c function to remove the entry_event_num check at the end of suspend function
+  * reboot kernel
+  * add acpi_sleep=s3_bios,s3_mode in kernel command line
+  * use fn + f6 to wake up the machine. 
