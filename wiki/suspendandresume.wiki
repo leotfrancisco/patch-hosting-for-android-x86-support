@@ -8,9 +8,11 @@
     menuentry "Android Vesa 9xx" {
             insmod 915resolution
             915resolution 45 1024 600
-            linux /boot/kernel-vesa root=/dev/sdc2 rootdelay=6 rw init=/init androidboot.hardware=eee_701 vga=791 acpi_sleep=s3_biod,s3_mode
+            linux /boot/kernel-vesa root=/dev/sdc2 rootdelay=6 rw init=/init androidboot.hardware=eee_701 vga=791 acpi_sleep=s3_bios,s3_mode
     }
    }}}
   * boot android and set screen timeout to whatever value you want.
   * wait machine to suspend.
-  * use fn + f6 to wake up the machine. 
+  * use fn + f6 to wake up the machine.
+
+NOTE: you can wake up your machine by hit on any key. Somehow, on my 1000H, the screen brightness is set to the lowest level after the machine resumed. I have to use fn+f6 to turn the brightness back on.
