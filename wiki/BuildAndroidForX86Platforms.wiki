@@ -72,6 +72,7 @@ Here is a smart tip for apply patches from kewarken@gmail.com
  # Boot to "std_boot"                
  
 = How to rebuild kernel =
+ # download kernel.config to vendor/asus/eee_701/
  # $cd sandbox
  # $cp vender/asus/eee_701/kernel.config kernel/.config
  # $cd kernel
