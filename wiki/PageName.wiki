@@ -1,0 +1,20 @@
+#summary ALSA
+
+= Introduction =
+
+This page will explain how to make ALSA work on EeePC 701 (and I think also other similar products).
+
+
+== Kernel ==
+
+ALSA (as built in) and Intel HD (as module).
+
+== BoardConfig.mk ==
+
+HAVE_HTC_AUDIO_DRIVER := false
+BOARD_USES_ALSA_AUDIO := true
+BUILD_WITH_ALSA_UTILS := true
+
+
+
+http://groups.google.it/group/android-porting/browse_thread/thread/5ac2606399e134d6?hl=it&pli=1
