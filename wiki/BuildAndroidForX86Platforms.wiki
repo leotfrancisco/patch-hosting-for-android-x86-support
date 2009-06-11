@@ -79,7 +79,8 @@ Here is a smart tip for apply patches from kewarken@gmail.com
  # $make menuconfig  select the Virtualization option and de-select it then exit, choose "Yes" when you are asked whether to save a new configuration. (Select/de-select the Virtualization option is just used to trigger some menuconfig operations.)
  # $make bzImage
  # you can find your kernel image from arch/x86/boot directory
- # $cp bzImage vendor/asus/eee_701/ and rebuild your Android image.
+ # $cp bzImage vendor/asus/eee_701/ and rename it to kernel
+ # rebuild your Android image.
 
 = How to build and install image for EeePC701 =
 Building an installer image for a real EeePC is not more complicate than building an image for VB. The biggest issue is the framebuffer. The original porting done by Dima uses a modesetting inteldrmfb driver. Dima gave a link to download the source code for the driver. But the link does not work anymore. So people can not build their own kernel anymore.
