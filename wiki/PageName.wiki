@@ -4,17 +4,50 @@
 
 This page will explain how to make ALSA work on EeePC 701 (and I think also other similar products).
 
+== Downloading alsa projects ==
+
+Create the `local_manifest.xml` file which tells repo about the eee_701 branch:
+
+{{{
+$ cd .repo
+$ touch local_manifest.xml
+}}}
+
+Open `local_manifest.xml` in your favorite text editor. Paste the following text into `local_manifest.xml`.
+
+{{{
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+ <project path="external/alsa-lib" name="platform/external/alsa-lib"/>
+ <project path="external/alsa-lib" name="platform/external/alsa-utils"/>
+ <project path="hardware/alsa_sound" name="platform/hardware/alsa_sound"/>
+</manifest>
+}}}
 
 == Kernel ==
 
 ALSA (as built in) and Intel HD (as module).
 
 == BoardConfig.mk ==
+{{{
+    #...
+    HAVE_HTC_AUDIO_DRIVER := false
+    BOARD_USES_ALSA_AUDIO := true
+    BUILD_WITH_ALSA_UTILS := true
+    #...
+}}}
 
-HAVE_HTC_AUDIO_DRIVER := false
-BOARD_USES_ALSA_AUDIO := true
-BUILD_WITH_ALSA_UTILS := true
+== init.rc ==
 
+Under `kernel/Documentation/sound/alsa/ALSA-Configuration.txt` there are other sound card models can be specified as module arg.
 
+{{{
+on init
+    #...
+    insmod /lib/modules/snd-hda-intel.ko model=eeepc-p701
+    #...
+}}}
+
+== init.eee_701.rc ==
 
 http://groups.google.it/group/android-porting/browse_thread/thread/5ac2606399e134d6?hl=it&pli=1
