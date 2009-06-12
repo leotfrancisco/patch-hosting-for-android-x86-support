@@ -37,6 +37,21 @@ ALSA (as built in) and Intel HD (as module).
     #...
 }}}
 
+== AndroidBoard.mk ==
+
+Add the module to the kernel modules section.
+
+{{{
+kernel_modules := \
+    #...
+    snd-hda-intel.ko
+}}}
+
+Copy alsa config into `system/etc/`. Place 
+
+PRODUCT_COPY_FILES += \
+       $(LOCAL_PATH)/asound.conf:system/etc/asound.conf
+
 == init.rc ==
 
 Under `kernel/Documentation/sound/alsa/ALSA-Configuration.txt` there are other sound card models can be specified as module arg.
@@ -49,5 +64,16 @@ on init
 }}}
 
 == init.eee_701.rc ==
+
+{{{
+    setprop alsa.mixer.playback.master Master
+    setprop alsa.mixer.capture.master Capture
+    setprop alsa.mixer.playback.earpiece Master
+    setprop alsa.mixer.capture.earpiece Capture
+    setprop alsa.mixer.playback.headset Master
+    setprop alsa.mixer.playback.speaker Master
+}}}
+
+
 
 http://groups.google.it/group/android-porting/browse_thread/thread/5ac2606399e134d6?hl=it&pli=1
