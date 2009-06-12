@@ -20,7 +20,7 @@ Open `local_manifest.xml` in your favorite text editor. Paste the following text
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
  <project path="external/alsa-lib" name="platform/external/alsa-lib"/>
- <project path="external/alsa-lib" name="platform/external/alsa-utils"/>
+ <project path="external/alsa-utils" name="platform/external/alsa-utils"/>
  <project path="hardware/alsa_sound" name="platform/hardware/alsa_sound"/>
 </manifest>
 }}}
