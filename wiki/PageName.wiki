@@ -87,4 +87,6 @@ Add the following line to `static struct perms_ devperms[]`.
 { "/dev/snd/",          0664,   AID_SYSTEM,     AID_AUDIO,      1 }
 }}}
 
-http://groups.google.it/group/android-porting/browse_thread/thread/5ac2606399e134d6?hl=it&pli=1
+= Google Groups Discussion =
+
+You can notify missing information or ask for help at [http://groups.google.it/group/android-porting/browse_thread/thread/5ac2606399e134d6?hl=it&pli=1 GoogleDiscussion]
