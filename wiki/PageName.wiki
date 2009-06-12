@@ -24,7 +24,7 @@ Open `local_manifest.xml` in your favorite text editor. Paste the following text
 </manifest>
 }}}
 
-== Kernel ==
+== !Kernel ==
 
 ALSA (as built in) and Intel HD (as module).
 
@@ -37,7 +37,7 @@ ALSA (as built in) and Intel HD (as module).
     #...
 }}}
 
-== AndroidBoard.mk ==
+== !AndroidBoard.mk ==
 
 Add the module to the kernel modules section.
 
@@ -47,12 +47,16 @@ kernel_modules := \
     snd-hda-intel.ko
 }}}
 
-Copy alsa config into `system/etc/`. Place 
+Copy alsa config into `system/etc/`.
 
 PRODUCT_COPY_FILES += \
        $(LOCAL_PATH)/asound.conf:system/etc/asound.conf
 
-== init.rc ==
+== !Asound.conf ==
+
+Place [http://patch-hosting-for-android-x86-support.googlecode.com/files/asound.conf asound.conf] file into vendor directory.
+
+== !init.rc ==
 
 Under `kernel/Documentation/sound/alsa/ALSA-Configuration.txt` there are other sound card models can be specified as module arg.
 
@@ -63,7 +67,7 @@ on init
     #...
 }}}
 
-== init.eee_701.rc ==
+== !init.eee_701.rc ==
 
 {{{
     setprop alsa.mixer.playback.master Master
