@@ -25,6 +25,12 @@ Open `local_manifest.xml` in your favorite text editor. Paste the following text
 </manifest>
 }}}
 
+== Notice ==
+
+Both `alsa_amixer` and `alsa_aplay` will not work. Do not rely on them.
+On troubleshooting, check if the audio card is recognized by the ALSA Layer by using procfs or sysfs.
+Also `alsa_aplay -l` should help.
+
 == Kernel ==
 
 ALSA (as built in) and Intel HD (as module).
